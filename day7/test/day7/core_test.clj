@@ -1,0 +1,32 @@
+(ns day7.core-test
+  (:require [clojure.test :refer :all]
+            [day7.core :refer :all]))
+
+(deftest a-test
+  (testing "FIXME, I fail."
+    (add-command "123 -> x")
+    (add-command "456 -> y")
+    (add-command "x AND y -> d")
+    (add-command "x OR y -> e")
+    (add-command "x LSHIFT 2 -> f")
+    (add-command "y RSHIFT 2 -> g")
+    (add-command "NOT x -> h")
+    (add-command "NOT y -> i")
+    (add-command "x -> z")
+    (clojure.pprint/pprint @commands)
+    (is (= 123 (integrify "123")))
+    (is (= 123 (resolve-wire :x)))
+    (is (= 456 (resolve-wire :y)))
+    (is (= 72 (resolve-wire :d)))
+    (println @commands)
+    (is (= 507 (resolve-wire :e)))
+    (println @commands)
+    (is (= 492 (resolve-wire :f)))
+    (println @commands)
+    (is (= 114 (resolve-wire :g)))
+    (println @commands)
+    (is (= 65412 (resolve-wire :h)))
+    (println @commands)
+    (is (= 65079 (resolve-wire :i)))
+    (println @commands)
+    (is (= 123 (resolve-wire :z)))))
